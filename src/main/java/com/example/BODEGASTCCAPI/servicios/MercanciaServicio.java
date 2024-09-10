@@ -1,5 +1,6 @@
 package com.example.BODEGASTCCAPI.servicios;
 
+import com.example.BODEGASTCCAPI.helpers.mensajes.Mensaje;
 import com.example.BODEGASTCCAPI.helpers.validaciones.MercanciaValidacion;
 import com.example.BODEGASTCCAPI.modelos.Mercancia;
 import com.example.BODEGASTCCAPI.repositorios.IMercanciaRepositorio;
@@ -32,16 +33,16 @@ public class MercanciaServicio {
             //aplicar validaciones a los datos recibidos
             //si sale bien la validacion llamo al repo para guardar los datos
             if(!this.validacion.validarPeso(datosMercancia.getPeso())){
-                throw new Exception("Peso negativo, revisa");
+                throw new Exception(Mensaje.PESO_NEGATIVO.getMensaje());
             }
 
             if(!this.validacion.validarVolumen(datosMercancia.getVolumen())){
-                throw new Exception("Volumen negativo, revisa");
+                throw new Exception(Mensaje.VOLUMEN_NEGATIVO.getMensaje());
 
             }
 
             if(!this.validacion.validarFechas(datosMercancia.getFechaIngreso(), LocalDate.now())){
-                throw new Exception("Revisa la fecha ingresada");
+                throw new Exception(Mensaje.FECHA_INVALIDA.getMensaje());
             }
 
             return this.repositorio.save(datosMercancia);
