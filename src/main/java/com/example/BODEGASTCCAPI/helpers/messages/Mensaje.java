@@ -1,4 +1,4 @@
-package com.example.BODEGASTCCAPI.helpers.mensajes;
+package com.example.BODEGASTCCAPI.helpers.messages;
 
 public enum Mensaje {
 

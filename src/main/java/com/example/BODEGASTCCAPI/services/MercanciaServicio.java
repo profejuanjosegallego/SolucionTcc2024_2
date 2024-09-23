@@ -1,9 +1,9 @@
-package com.example.BODEGASTCCAPI.servicios;
+package com.example.BODEGASTCCAPI.services;
 
-import com.example.BODEGASTCCAPI.helpers.mensajes.Mensaje;
-import com.example.BODEGASTCCAPI.helpers.validaciones.MercanciaValidacion;
-import com.example.BODEGASTCCAPI.modelos.Mercancia;
-import com.example.BODEGASTCCAPI.repositorios.IMercanciaRepositorio;
+import com.example.BODEGASTCCAPI.helpers.messages.Mensaje;
+import com.example.BODEGASTCCAPI.helpers.validators.MercanciaValidacion;
+import com.example.BODEGASTCCAPI.models.Mercancia;
+import com.example.BODEGASTCCAPI.repositories.IMercanciaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

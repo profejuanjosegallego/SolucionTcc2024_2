@@ -1,7 +1,7 @@
-package com.example.BODEGASTCCAPI.controladores;
+package com.example.BODEGASTCCAPI.controllers;
 
-import com.example.BODEGASTCCAPI.modelos.Mercancia;
-import com.example.BODEGASTCCAPI.servicios.MercanciaServicio;
+import com.example.BODEGASTCCAPI.models.Mercancia;
+import com.example.BODEGASTCCAPI.services.MercanciaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/soluciontcc/v1/mercancias")
