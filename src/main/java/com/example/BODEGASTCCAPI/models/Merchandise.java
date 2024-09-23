@@ -19,7 +19,7 @@ public class Merchandise {
     @Column(name = "weight", nullable = false)
     private Double weight;
 
-    @Column(name = "goods_name", nullable = false, length = 50)
+    @Column(name = "merchandise_name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "recipient_type")
