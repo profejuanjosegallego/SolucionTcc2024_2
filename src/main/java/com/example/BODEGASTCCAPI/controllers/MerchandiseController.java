@@ -1,11 +1,14 @@
 package com.example.BODEGASTCCAPI.controllers;
 
 import com.example.BODEGASTCCAPI.models.Merchandise;
+import com.example.BODEGASTCCAPI.models.Sender;
 import com.example.BODEGASTCCAPI.services.MerchandiseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/soluciontcc/v1/merchandise")
@@ -21,8 +24,9 @@ public class MerchandiseController {
     }
 
     @GetMapping
-    public ResponseEntity<?> findAllMerchandise() {
-        return ResponseEntity.status(HttpStatus.OK).body(merchandiseService.findAllMerchandise());
+    public ResponseEntity<List<Merchandise>> findAllMerchandise() {
+        List<Merchandise> merchandiseList = merchandiseService.findAllMerchandise();
+        return ResponseEntity.status(HttpStatus.OK).body(merchandiseList);
     }
 
     @GetMapping("/{merchandiseId}")

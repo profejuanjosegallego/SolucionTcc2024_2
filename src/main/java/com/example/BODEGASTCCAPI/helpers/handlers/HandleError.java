@@ -35,4 +35,16 @@ public class HandleError {
                 .status(HttpStatus.NOT_FOUND)
                 .body(responseMessage);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> handleIllegalArgumentException(IllegalArgumentException e) {
+        Map<String, Object> responseMessage = new HashMap<>();
+        responseMessage.put("message", e.getMessage());
+        responseMessage.put("status", HttpStatus.BAD_REQUEST.value());
+        responseMessage.put("timestamp", System.currentTimeMillis());
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(responseMessage);
+    }
 }
