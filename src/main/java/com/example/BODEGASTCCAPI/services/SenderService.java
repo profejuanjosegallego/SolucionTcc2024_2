@@ -22,20 +22,20 @@ public class SenderService {
     // Store sender
     public Sender storeSender(Sender senderData) {
         validateSender(senderData);
-        return repository.save(senderData);
+        return this.repository.save(senderData);
     }
 
     public List<Sender> findAllSenders() {
-        return repository.findAll();
+        return this.repository.findAll();
     }
 
     public Sender findSenderById(Long senderId) {
-        return repository.findById(senderId)
+        return this.repository.findById(senderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Sender not found with ID " + senderId));
     }
 
     public Optional<Sender> findSenderByFirstName(String firstName) {
-        Optional<Sender> sender = repository.findByFirstNames(firstName);
+        Optional<Sender> sender = this.repository.findByFirstNames(firstName);
         if (sender.isEmpty()) {
             throw new ResourceNotFoundException("Sender with first name " + firstName + " not found");
         }
@@ -52,12 +52,12 @@ public class SenderService {
         existingSender.setAddress(senderData.getAddress());
         existingSender.setPaymentMethod(senderData.getPaymentMethod());
 
-        return repository.save(existingSender);
+        return this.repository.save(existingSender);
     }
 
     public void deleteSender(Long senderId) {
         Sender sender = findSenderById(senderId);
-        repository.delete(sender);
+        this.repository.delete(sender);
     }
 
     private void validateSender(Sender sender) {

@@ -30,8 +30,8 @@ public class MerchandiseService {
         return this.repository.findAll();
     }
 
-    public Merchandise findMerchandiseById(Integer merchandiseId) {
-        return repository.findById(Long.valueOf(merchandiseId))
+    public Merchandise findMerchandiseById(Long merchandiseId) {
+        return repository.findById(merchandiseId)
                 .orElseThrow(() -> new ResourceNotFoundException("Merchandise not found with ID " + merchandiseId));
     }
 
@@ -43,7 +43,7 @@ public class MerchandiseService {
         return merchandise;
     }
 
-    public Merchandise updateMerchandise(Integer merchandiseId, Merchandise merchandiseData) {
+    public Merchandise updateMerchandise(Long merchandiseId, Merchandise merchandiseData) {
         Merchandise existingMerchandise = findMerchandiseById(merchandiseId);
         validateMerchandise(merchandiseData);
 
@@ -61,7 +61,7 @@ public class MerchandiseService {
         return this.repository.save(existingMerchandise);
     }
 
-    public void deleteMerchandise(Integer merchandiseId) {
+    public void deleteMerchandise(Long merchandiseId) {
         Merchandise merchandise = findMerchandiseById(merchandiseId);
         this.repository.delete(merchandise);
     }
