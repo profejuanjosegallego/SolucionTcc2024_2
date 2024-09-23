@@ -17,35 +17,37 @@ public class SenderController {
     @Autowired
     private SenderService senderService;
 
-    // Endpoint to store sender
     @PostMapping
-    public ResponseEntity<?> storeSender(@RequestBody Sender senderData) {
+    public ResponseEntity<Sender> storeSender(@RequestBody Sender senderData) {
         Sender savedSender = senderService.storeSender(senderData);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedSender);
     }
 
-    // Endpoint to retrieve all senders
     @GetMapping
     public ResponseEntity<List<Sender>> findAllSenders() {
         List<Sender> senders = senderService.findAllSenders();
         return ResponseEntity.status(HttpStatus.OK).body(senders);
     }
 
-    // Endpoint to retrieve sender by ID
     @GetMapping("/{senderId}")
-    public ResponseEntity<?> findSenderById(@PathVariable Long senderId) {
+    public ResponseEntity<Sender> findSenderById(@PathVariable Long senderId) {
         Sender sender = senderService.findSenderById(senderId);
         return ResponseEntity.status(HttpStatus.OK).body(sender);
     }
 
-    // Endpoint to update sender by ID
+    @GetMapping("/firstName/{firstName}")
+    public ResponseEntity<Sender> findSenderByFirstName(@PathVariable String firstName) {
+        Sender sender = senderService.findSenderByFirstName(firstName).isPresent() ?
+                senderService.findSenderByFirstName(firstName).get() : null;
+        return ResponseEntity.status(HttpStatus.OK).body(sender);
+    }
+
     @PutMapping("/{senderId}")
-    public ResponseEntity<?> updateSender(@PathVariable Long senderId, @RequestBody Sender senderData) {
+    public ResponseEntity<Sender> updateSender(@PathVariable Long senderId, @RequestBody Sender senderData) {
         Sender updatedSender = senderService.updateSender(senderId, senderData);
         return ResponseEntity.status(HttpStatus.OK).body(updatedSender);
     }
 
-    // Endpoint to delete sender by ID
     @DeleteMapping("/{senderId}")
     public ResponseEntity<?> deleteSender(@PathVariable Long senderId) {
         senderService.deleteSender(senderId);

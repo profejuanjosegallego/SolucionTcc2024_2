@@ -17,24 +17,18 @@ public class MerchandiseController {
     @PostMapping
     public ResponseEntity<Merchandise> storeMerchandise(@RequestBody Merchandise merchandiseData) {
         Merchandise savedMerchandise = merchandiseService.storeMerchandise(merchandiseData);
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(savedMerchandise);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedMerchandise);
     }
 
     @GetMapping
     public ResponseEntity<?> findAllMerchandise() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(merchandiseService.findAllMerchandise());
+        return ResponseEntity.status(HttpStatus.OK).body(merchandiseService.findAllMerchandise());
     }
 
     @GetMapping("/{merchandiseId}")
-    public ResponseEntity<Merchandise> findMerchandiseById(@PathVariable Integer merchandiseId) {
+    public ResponseEntity<Merchandise> findMerchandiseById(@PathVariable Long merchandiseId) {
         Merchandise merchandise = merchandiseService.findMerchandiseById(merchandiseId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(merchandise);
+        return ResponseEntity.status(HttpStatus.OK).body(merchandise);
     }
 
     @GetMapping("/name/{merchandiseName}")
@@ -42,24 +36,18 @@ public class MerchandiseController {
 
         Merchandise merchandise = merchandiseService.findMerchandiseByName(merchandiseName).isPresent() ?
                 merchandiseService.findMerchandiseByName(merchandiseName).get() : null;
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(merchandise);
+        return ResponseEntity.status(HttpStatus.OK).body(merchandise);
     }
 
     @PutMapping("/{merchandiseId}")
-    public ResponseEntity<Merchandise> updateMerchandise(@PathVariable Integer merchandiseId, @RequestBody Merchandise merchandiseData) {
+    public ResponseEntity<Merchandise> updateMerchandise(@PathVariable Long merchandiseId, @RequestBody Merchandise merchandiseData) {
         Merchandise updatedMerchandise = merchandiseService.updateMerchandise(merchandiseId, merchandiseData);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(updatedMerchandise);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedMerchandise);
     }
 
     @DeleteMapping("/{merchandiseId}")
-    public ResponseEntity<?> deleteMerchandise(@PathVariable Integer merchandiseId) {
+    public ResponseEntity<?> deleteMerchandise(@PathVariable Long merchandiseId) {
         merchandiseService.deleteMerchandise(merchandiseId);
-        return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
-                .body("Merchandise with ID " + merchandiseId + " deleted successfully");
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
