@@ -46,6 +46,8 @@ public class SenderValidation {
                 return true;
             }
         }
+        System.out.println("Invalid payment method: " + paymentMethod);
+        System.out.println("Valid payment methods: credit_card, bank_transfer, cash");
         return false;
     }
 }
