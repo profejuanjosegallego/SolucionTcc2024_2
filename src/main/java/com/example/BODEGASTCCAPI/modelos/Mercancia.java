@@ -21,7 +21,7 @@ public class Mercancia {
     private Double peso; //solo se aceptan numeros positivos
     //nombre
 
-    @Column(name = "nombre_mercancia", nullable = false, length = 50)
+    @Column(name = "nombre_mercancia", nullable = true, length = 50)
     private String nombre; //maximo 50 caracteres y solo se acepan letras y espacios
     //tipoDestinatario
     private String tipoDestinatario;

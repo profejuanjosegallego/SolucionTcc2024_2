@@ -24,12 +24,14 @@ public class ControladorMercancia {
     //llamar a cada uno de los metodos disponibles
     // en el servicio
 
-    @PostMapping
-    public ResponseEntity<?> LlamadoGuardarMercancia(@RequestBody Mercancia datosMercanciaEnviadosCliente){
+
+
+    @PostMapping()
+    public ResponseEntity<?> LlamadoGuardarMercanciaDTO(@RequestBody Mercancia datosMercanciaEnviadosCliente){
         try{
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(this.mercanciaServicio.almacenarMercancia(datosMercanciaEnviadosCliente));
+                    .body(this.mercanciaServicio.almacenarMercanciaDTO(datosMercanciaEnviadosCliente));
         }catch(Exception error){
             HashMap<String, Object> mensajeRespuesta= new HashMap<>();
             mensajeRespuesta.put("mensaje",error.getMessage());
