@@ -14,10 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -66,6 +63,49 @@ public class ControladorMercancia {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(this.mercanciaServicio.almacenarMercanciaDTO(datosMercanciaEnviadosCliente));
+        }catch(Exception error){
+            HashMap<String, Object> mensajeRespuesta= new HashMap<>();
+            mensajeRespuesta.put("mensaje",error.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(mensajeRespuesta);
+        }
+
+    }
+
+
+    @GetMapping()
+    @Operation(
+            summary = "Buscar todas lar emrcancias almacenadas en BD",
+            description = "Se encuentran todos los registros y se envian en formato JSON hacia el cliente"
+    )
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Mercancias encontradas con exito en BD",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = MercanciaDTO.class),
+                                    examples = @ExampleObject(value = "{\"volumen\":\"20.5\",\"peso\":\"400\",\"nombre\":\"Nevera LG\",\"direccion\":\"calle 100 sur 123\",\"fechaIngreso\":\"2024-10-8\"}")
+                            )
+                    ),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Error al buscar la mercancias",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = String.class),
+                                    examples = @ExampleObject(value = "{\"mensaje\":\"eL volumen no puede ser negativo\"}")
+                            )
+                    )
+            }
+    )
+    public ResponseEntity<?> LlamadoBuscarMercanciasDTO(){
+        try{
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.mercanciaServicio.buscarTodasMercancias());
         }catch(Exception error){
             HashMap<String, Object> mensajeRespuesta= new HashMap<>();
             mensajeRespuesta.put("mensaje",error.getMessage());
