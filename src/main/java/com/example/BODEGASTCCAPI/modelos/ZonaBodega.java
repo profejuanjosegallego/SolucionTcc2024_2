@@ -1,6 +1,9 @@
 package com.example.BODEGASTCCAPI.modelos;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "zonas")
@@ -19,6 +22,12 @@ public class ZonaBodega {
     private Double capacidadVolumenOcupado;
     @Column(name = "capacidad_peso_ocupado", nullable = false)
     private Double capacidadPesoOcupado;
+
+    @OneToMany(mappedBy = "zonabodega")
+    @JsonManagedReference
+    private List<Mercancia> mercancias;
+
+
 
     public ZonaBodega() {
     }
