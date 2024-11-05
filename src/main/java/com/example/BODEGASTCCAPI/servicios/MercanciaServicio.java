@@ -51,6 +51,8 @@ public class MercanciaServicio {
                 throw new Exception(Mensaje.FECHA_INVALIDA.getMensaje());
             }
 
+            //AVERIGUAR SI LA ZONA DONDE LA MERCANCIA SE VA A GUARDAR TIENE ESPACIO DISPONIBLE
+
             return this.mapaMercancia.mapearMercancia(this.repositorio.save(datosMercancia));
 
 
